@@ -8,4 +8,5 @@ phpmyadmin: https://blackflagtv.de/db-administration/
 - host: dhbw.berski.de
 - port: 3306
 - user: berski_dhbw_java
-- password: UQf4J_d_b%y!
+- password: TO4ftmRsFx
+- databse: berski_dhbw_java
