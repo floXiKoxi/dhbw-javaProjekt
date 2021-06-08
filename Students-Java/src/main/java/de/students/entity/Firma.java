@@ -5,34 +5,50 @@
  */
 package de.students.entity;
 
-/**
- *
- * @author yiwen
- */
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Firma {
 
-    private String name;
-    private String addresse;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int fId;
 
-    public Firma(String name, String addresse) {
+    private String name;
+
+    private String adresse;
+
+    public Firma(String name, String adresse) {
         this.name = name;
-        this.addresse = addresse;
+        this.adresse = adresse;
+    }
+
+    public Firma() {
+
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAddresse() {
-        return addresse;
+    public String getAdresse() {
+        return adresse;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAddresse(String addresse) {
-        this.addresse = addresse;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
+    public void setfId(int fId) {
+        this.fId = fId;
+    }
+
+    public int getfId() {
+        return fId;
+    }
 }

@@ -1,21 +1,41 @@
 package de.students.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Student {
+
+    @Id
+    private int matrikelnummer;
 
     private String vorname, nachname;
     private int javaKentnisse;
-    private Raum raum;
+    @ManyToOne
     private Kurs kurs;
+    @ManyToOne
     private Firma firma;
 
-    public Student(String vorname, String nachname, int javaKentnisse, Firma firma, Raum raum, Kurs kurs){
+    public Student(int matrikelnummer, String vorname, String nachname, int javaKentnisse, Firma firma, Kurs kurs){
 
+        this.matrikelnummer = matrikelnummer;
         this.vorname = vorname;
         this.nachname = nachname;
         this.javaKentnisse = javaKentnisse;
         this.kurs = kurs;
-        this.raum = raum;
         this.firma = firma;
+    }
+
+    public Student() {
+
+    }
+
+    public int getMatrikelnummer() {
+        return matrikelnummer;
+    }
+
+    public void setMatrikelnummer(int matrikelnummer) {
+        this.matrikelnummer = matrikelnummer;
     }
 
     public String getVorname() {
@@ -40,14 +60,6 @@ public class Student {
 
     public void setJavaKentnisse(int javaKentnisse) {
         this.javaKentnisse = javaKentnisse;
-    }
-
-    public Raum getRaum() {
-        return raum;
-    }
-
-    public void setRaum(Raum raum) {
-        this.raum = raum;
     }
 
     public Kurs getKurs() {

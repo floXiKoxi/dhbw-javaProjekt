@@ -1,47 +1,37 @@
 package de.students.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import de.students.entity.Firma;
+import de.students.entity.Kurs;
+import de.students.entity.Raum;
+import de.students.entity.Student;
+import org.hibernate.Session;
 
 public class DatabaseController {
 
-    private Connection connection;
-
-    public void connectToDB() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        String host = "dhbw.berski.de";
-        int port = 3306;
-        String database = "berski_dhbw_java";
-        String user = "berski_dhbw_java";
-        String password = "TO4ftmRsFx";
-
-        String connectionString = "jdbc:mysql://" + host + ":" + port + "/" + database + "?user=" + user + "&password=" + password;
-
-        connection = DriverManager.getConnection(connectionString);
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public boolean isConnected() {
-        try {
-            return !connection.isClosed();
-        } catch (SQLException throwables) {
-            return false;
-        }
-    }
-
     // für Testen des DatabaseControllers
     public static void main(String[] args) {
-        DatabaseController databaseController = new DatabaseController();
-        try {
-            databaseController.connectToDB();
-        } catch (Exception exc) {
-            System.out.println("EXC: " + exc);
-        }
-        System.out.println("isConnected: " + databaseController.isConnected());
+        /*Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        Student student = new Student();
+
+        Firma firma = new Firma("Firma 1", "Straße 1");
+        session.save(firma);
+
+        Raum raum = new Raum("5");
+        session.save(raum);
+
+        Kurs kurs = new Kurs("abc", raum);
+        session.save(kurs);
+
+        student.setMatrikelnummer(123);
+        student.setVorname("ABC");
+        student.setNachname("DEF");
+        student.setJavaKentnisse(5);
+        student.setFirma(firma);
+        student.setKurs(kurs);
+
+        session.save(student);
+        session.getTransaction().commit();*/
     }
 }

@@ -5,24 +5,35 @@
  */
 package de.students.entity;
 
-/**
- *
- * @author yiwen
- */
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Raum {
 
-    private int raumNr;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int rId;
 
-    public Raum(int raumNr) {
+    private String raumNr;
+
+
+    public Raum(String raumNr) {
         this.raumNr = raumNr;
     }
+    public Raum() { }
 
-    public int getRaumNr() {
+
+    public String getRaumNr() {
         return raumNr;
     }
-
-    public void setRaumNr(int raumNr) {
+    public void setRaumNr(String raumNr) {
         this.raumNr = raumNr;
     }
-
+    public int getrId() {
+        return rId;
+    }
+    public void setrId(int rId) {
+        this.rId = rId;
+    }
 }

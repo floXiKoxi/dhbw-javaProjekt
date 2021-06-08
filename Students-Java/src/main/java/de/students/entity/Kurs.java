@@ -5,19 +5,28 @@
  */
 package de.students.entity;
 
-/**
- *
- * @author yiwen
- */
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Kurs {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int kId;
+
     private String name;
+
+    @ManyToOne
     private Raum raum;
+
 
     public Kurs(String name, Raum raum) {
         this.name = name;
         this.raum = raum;
+    }
 
+    public Kurs() {
     }
 
     public String getName() {
@@ -36,4 +45,11 @@ public class Kurs {
         this.raum = raum;
     }
 
+    public int getkId() {
+        return kId;
+    }
+
+    public void setkId(int kId) {
+        this.kId = kId;
+    }
 }
