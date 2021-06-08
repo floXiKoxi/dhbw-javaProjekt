@@ -33,4 +33,15 @@ public class DatabaseController {
             return false;
         }
     }
+
+    // für Testen des DatabaseControllers
+    public static void main(String[] args) {
+        DatabaseController databaseController = new DatabaseController();
+        try {
+            databaseController.connectToDB();
+        } catch (Exception exc) {
+            System.out.println("EXC: " + exc);
+        }
+        System.out.println("isConnected: " + databaseController.isConnected());
+    }
 }
