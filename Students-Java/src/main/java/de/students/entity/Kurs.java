@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.students.entity;
 
 import javax.persistence.*;
@@ -14,9 +9,7 @@ public class Kurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int kId;
-
     private String name;
-
     @ManyToOne
     private Raum raum;
 
@@ -25,22 +18,19 @@ public class Kurs {
         this.name = name;
         this.raum = raum;
     }
+    public Kurs() { }
 
-    public Kurs() {
-    }
 
     public String getName() {
         return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Raum getRaum() {
         return raum;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setRaum(Raum raum) {
         this.raum = raum;
     }
@@ -48,7 +38,6 @@ public class Kurs {
     public int getkId() {
         return kId;
     }
-
     public void setkId(int kId) {
         this.kId = kId;
     }
