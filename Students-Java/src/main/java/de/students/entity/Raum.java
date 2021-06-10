@@ -31,4 +31,9 @@ public class Raum {
     public void setrId(int rId) {
         this.rId = rId;
     }
+
+    @Override
+    public String toString() {
+        return "{ rId: " + rId + ", raumNr: " + raumNr + " }";
+    }
 }

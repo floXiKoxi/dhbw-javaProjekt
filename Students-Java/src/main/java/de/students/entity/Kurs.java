@@ -41,4 +41,9 @@ public class Kurs {
     public void setkId(int kId) {
         this.kId = kId;
     }
+
+    @Override
+    public String toString() {
+        return "{ kId: " + kId + ", name: " + name + ", raum: " + raum.toString() + " }";
+    }
 }

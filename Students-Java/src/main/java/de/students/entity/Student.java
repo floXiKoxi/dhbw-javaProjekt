@@ -68,4 +68,9 @@ public class Student {
     public void setFirma(Firma firma) {
         this.firma = firma;
     }
+
+    @Override
+    public String toString() {
+        return "{ matrikelnummer: " + matrikelnummer + ", vorname: " + vorname + ", nachname: " + nachname + ", javaKenntnisse: " + javaKentnisse + ", kurs: " + kurs.toString() + ", firma: " + firma.toString() + " }";
+    }
 }
