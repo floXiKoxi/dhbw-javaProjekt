@@ -1,37 +1,79 @@
 package de.students.db;
 
-import de.students.entity.Firma;
 import de.students.entity.Kurs;
-import de.students.entity.Raum;
-import de.students.entity.Student;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class DatabaseController {
 
-    // für Testen des DatabaseControllers
-    public static void main(String[] args) {
-        /*Session session = HibernateUtil.getSessionFactory().openSession();
+    private final Session session;
 
+    public DatabaseController() {
+        session = HibernateUtil.getSessionFactory().openSession();
+    }
+
+    public void shutdown() {
+        HibernateUtil.shutdown();
+    }
+
+    public List<Kurs> getKurse() {
         session.beginTransaction();
-        Student student = new Student();
+        List<Kurs> kurse = session.createQuery("from Kurs").list();
+        session.getTransaction().commit();
 
-        Firma firma = new Firma("Firma 1", "Straße 1");
-        session.save(firma);
+        return kurse;
+    }
 
-        Raum raum = new Raum("5");
-        session.save(raum);
+    public Kurs getKursByName(String name) {
+        return getKurse().stream()
+                .filter(kurs -> name.equals(kurs.getName()))
+                .findAny()
+                .orElse(null);
+    }
 
-        Kurs kurs = new Kurs("abc", raum);
+    public boolean kurseContains(String name) {
+        return getKurse().stream().anyMatch(kurs -> name.equals(kurs.getName()));
+    }
+
+    public void insertKurs(Kurs kurs) {
+        session.beginTransaction();
         session.save(kurs);
+        session.getTransaction().commit();
+    }
 
-        student.setMatrikelnummer(123);
-        student.setVorname("ABC");
-        student.setNachname("DEF");
-        student.setJavaKentnisse(5);
-        student.setFirma(firma);
-        student.setKurs(kurs);
+    public void updateKurs(Kurs kurs) {
+        session.beginTransaction();
+        session.merge(kurs);
+        session.flush();
+        session.getTransaction().commit();
+    }
 
-        session.save(student);
-        session.getTransaction().commit();*/
+
+    // nur fürs Testen des DatabaseControllers
+    public static void main(String[] args) {
+
+        DatabaseController dbController = new DatabaseController();
+
+        // select
+        Kurs kurs = dbController.getKursByName("abc");
+        if (kurs == null) System.out.println("Dieser Kurs ist nicht vorhanden");
+        else System.out.println(kurs);
+
+        // update
+        /*kurs.setName("abc2");
+        dbController.updateKurs(kurs);*/
+
+        // insert
+        /*Kurs newKurs = new Kurs();
+        newKurs.setRaum(kurs.getRaum());
+        newKurs.setName("test kurs");
+        dbController.insertKurs(newKurs);  // Id von newKurs wird erst hier gesetzt
+        System.out.println("newkurs Id: " + newKurs.getkId());*/
+
+        // contains
+        System.out.println(dbController.kurseContains("abc"));
+
     }
 }
