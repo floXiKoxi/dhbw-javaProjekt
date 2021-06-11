@@ -9,20 +9,20 @@ public class Raum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rId;
-    private String raumNr;
+    private String raum;
 
 
     public Raum(String raumNr) {
-        this.raumNr = raumNr;
+        this.raum = raumNr;
     }
     public Raum() { }
 
 
     public String getRaumNr() {
-        return raumNr;
+        return raum;
     }
     public void setRaumNr(String raumNr) {
-        this.raumNr = raumNr;
+        this.raum = raumNr;
     }
 
     public int getrId() {
@@ -34,6 +34,6 @@ public class Raum {
 
     @Override
     public String toString() {
-        return "{ rId: " + rId + ", raumNr: " + raumNr + " }";
+        return raum;
     }
 }

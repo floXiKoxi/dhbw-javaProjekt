@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16"
+            fx:controller="de.students.controller.CoursePopupController">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="155.0" />
@@ -20,9 +21,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField prefWidth="103.0" GridPane.columnIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Neuer Kurs speichern" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <TextField prefWidth="103.0" GridPane.columnIndex="1" fx:id="kurs"/>
+      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="raum"/>
+      <Button fx:id="btn_save" onAction="#saveCourse" mnemonicParsing="false" text="Neuer Kurs speichern" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
