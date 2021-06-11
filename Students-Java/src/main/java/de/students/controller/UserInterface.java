@@ -26,7 +26,12 @@ public class UserInterface{
     @FXML
     private void initialize() {
 
-        TableView<Kurs> table = kursTable;
+        kursTable.setEditable(true);
+
+        kursTable.getItems().add(new Kurs("TINF", new Raum("B36")));
+
+        kursTable.refresh();
+
     }
 
     public TableView getKursTable() {
