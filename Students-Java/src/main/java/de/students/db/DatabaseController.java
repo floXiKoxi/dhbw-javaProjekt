@@ -1,5 +1,6 @@
 package de.students.db;
 
+import de.students.entity.Firma;
 import de.students.entity.Kurs;
 import de.students.entity.Raum;
 import de.students.entity.Student;
@@ -93,6 +94,28 @@ public class DatabaseController {
     public void updateRaum(Raum raum) {
         session.beginTransaction();
         session.merge(raum);
+        session.flush();
+        session.getTransaction().commit();
+    }
+
+    // Firmen
+    public List<Firma> getFirmen() {
+        session.beginTransaction();
+        List<Firma> firmen = session.createQuery("from Firma").list();
+        session.getTransaction().commit();
+
+        return firmen;
+    }
+
+    public void insertFirma(Firma firma) {
+        session.beginTransaction();
+        session.save(firma);
+        session.getTransaction().commit();
+    }
+
+    public void updateFirma(Firma firma) {
+        session.beginTransaction();
+        session.merge(firma);
         session.flush();
         session.getTransaction().commit();
     }
