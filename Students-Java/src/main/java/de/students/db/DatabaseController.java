@@ -1,6 +1,7 @@
 package de.students.db;
 
 import de.students.entity.Kurs;
+import de.students.entity.Raum;
 import de.students.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -55,7 +56,7 @@ public class DatabaseController {
     // Studenten
     public List<Student> getStudenten() {
         session.beginTransaction();
-        List<Student> studenten = session.createQuery("from Student ").list();
+        List<Student> studenten = session.createQuery("from Student").list();
         session.getTransaction().commit();
 
         return studenten;
@@ -70,6 +71,28 @@ public class DatabaseController {
     public void updateStudent(Student student) {
         session.beginTransaction();
         session.merge(student);
+        session.flush();
+        session.getTransaction().commit();
+    }
+
+    // Räume
+    public List<Raum> getRaeume() {
+        session.beginTransaction();
+        List<Raum> raeume = session.createQuery("from Raum").list();
+        session.getTransaction().commit();
+
+        return raeume;
+    }
+
+    public void insertRaum(Raum raum) {
+        session.beginTransaction();
+        session.save(raum);
+        session.getTransaction().commit();
+    }
+
+    public void updateRaum(Raum raum) {
+        session.beginTransaction();
+        session.merge(raum);
         session.flush();
         session.getTransaction().commit();
     }
