@@ -54,6 +54,12 @@ public class DatabaseController {
         session.getTransaction().commit();
     }
 
+    public void deleteKurs(Kurs kurs) {
+        session.beginTransaction();
+        session.delete(kurs);
+        session.getTransaction().commit();
+    }
+
     // Studenten
     public List<Student> getStudenten() {
         session.beginTransaction();
@@ -73,6 +79,12 @@ public class DatabaseController {
         session.beginTransaction();
         session.merge(student);
         session.flush();
+        session.getTransaction().commit();
+    }
+
+    public void deleteStudent(Student student) {
+        session.beginTransaction();
+        session.delete(student);
         session.getTransaction().commit();
     }
 
@@ -98,6 +110,13 @@ public class DatabaseController {
         session.getTransaction().commit();
     }
 
+    public void deleteRaum(Raum raum) {
+        session.beginTransaction();
+        session.delete(raum);
+        session.getTransaction().commit();
+    }
+
+
     // Firmen
     public List<Firma> getFirmen() {
         session.beginTransaction();
@@ -117,6 +136,12 @@ public class DatabaseController {
         session.beginTransaction();
         session.merge(firma);
         session.flush();
+        session.getTransaction().commit();
+    }
+
+    public void deleteFirma(Firma firma) {
+        session.beginTransaction();
+        session.delete(firma);
         session.getTransaction().commit();
     }
 
