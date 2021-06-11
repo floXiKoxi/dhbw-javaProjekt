@@ -1,6 +1,7 @@
 package de.students.db;
 
 import de.students.entity.Kurs;
+import de.students.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -18,6 +19,7 @@ public class DatabaseController {
         HibernateUtil.shutdown();
     }
 
+    // Kurse
     public List<Kurs> getKurse() {
         session.beginTransaction();
         List<Kurs> kurse = session.createQuery("from Kurs").list();
@@ -46,6 +48,28 @@ public class DatabaseController {
     public void updateKurs(Kurs kurs) {
         session.beginTransaction();
         session.merge(kurs);
+        session.flush();
+        session.getTransaction().commit();
+    }
+
+    // Studenten
+    public List<Student> getStudenten() {
+        session.beginTransaction();
+        List<Student> studenten = session.createQuery("from Student ").list();
+        session.getTransaction().commit();
+
+        return studenten;
+    }
+
+    public void insertStudent(Student student) {
+        session.beginTransaction();
+        session.save(student);
+        session.getTransaction().commit();
+    }
+
+    public void updateStudent(Student student) {
+        session.beginTransaction();
+        session.merge(student);
         session.flush();
         session.getTransaction().commit();
     }
