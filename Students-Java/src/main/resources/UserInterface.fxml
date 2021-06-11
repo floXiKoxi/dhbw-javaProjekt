@@ -35,11 +35,11 @@
             <Font name="Imprint MT Shadow" size="54.0" />
          </font>
       </Label>
-      <TableView layoutX="7.0" layoutY="142.0" prefHeight="591.0" prefWidth="717.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="166.0" AnchorPane.topAnchor="142.0">
+      <TableView id="kursTable" layoutX="7.0" layoutY="142.0" prefHeight="591.0" prefWidth="717.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="166.0" AnchorPane.topAnchor="142.0">
         <columns>
-            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="310.0" text="Kurs" />
-          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="303.0" text="Raum" />
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="103.0" text="C2" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="310.0" text="Kurs" id="kursID"/>
+          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="303.0" text="Raum" id="raumID"/>
+          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="103.0" text="C2" id="c2ID"/>
         </columns>
       </TableView>
    </children>
