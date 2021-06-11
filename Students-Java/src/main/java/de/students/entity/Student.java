@@ -16,7 +16,7 @@ public class Student {
     private Firma firma;
 
 
-    public Student(int matrikelnummer, String vorname, String nachname, int javaKentnisse, Firma firma, Kurs kurs){
+    public Student(String vorname, String nachname, int matrikelnummer, Firma firma, Kurs kurs, int javaKentnisse){
         this.matrikelnummer = matrikelnummer;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -24,6 +24,7 @@ public class Student {
         this.kurs = kurs;
         this.firma = firma;
     }
+    
     public Student() { }
 
 
