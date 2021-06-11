@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="706.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -30,16 +31,16 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="866.0" text="KURSE" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="618.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
+      <Label fx:id="testLabel" alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="866.0" text="KURSE" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="618.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
          <font>
             <Font name="Imprint MT Shadow" size="54.0" />
          </font>
       </Label>
-      <TableView id="kursTable" layoutX="7.0" layoutY="142.0" prefHeight="591.0" prefWidth="717.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="166.0" AnchorPane.topAnchor="142.0">
+      <TableView fx:id="kursTable" layoutX="7.0" layoutY="142.0" prefHeight="591.0" prefWidth="717.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="166.0" AnchorPane.topAnchor="142.0">
         <columns>
-            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="310.0" text="Kurs" id="kursID"/>
-          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="303.0" text="Raum" id="raumID"/>
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="103.0" text="C2" id="c2ID"/>
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="310.0" text="Kurs" fx:id="kursID"/>
+          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="303.0" text="Raum" fx:id="raumID"/>
+          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="103.0" text="C2" fx:id="c2ID"/>
         </columns>
       </TableView>
    </children>
