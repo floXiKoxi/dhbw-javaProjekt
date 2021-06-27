@@ -33,8 +33,11 @@ public class CoursePopupController {
     public void saveCourse(ActionEvent e){
 
         if(getKurs().length() >= 1 && getRaum().length() >= 1){
-
-            dbController.insertKurs(new Kurs(getKurs(), null));
+            
+            Raum raumObj = new Raum(getRaum()); 
+            dbController.insertRaum(raumObj);
+            
+            dbController.insertKurs(new Kurs(getKurs(), raumObj));
 
             Stage stage = (Stage) btn_save.getScene().getWindow();
             stage.close();
