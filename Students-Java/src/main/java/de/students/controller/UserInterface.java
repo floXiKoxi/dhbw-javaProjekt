@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -66,8 +67,13 @@ public class UserInterface{
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root1));
-                    stage.show();
                     stage.setAlwaysOnTop(true);
+
+                    //Wenn Stage geschlossen ist, dann macht weiter mit code.
+                    stage.showAndWait();
+
+                    fillTableWithKurs();
+
 
                 } catch (IOException e) {
                     e.printStackTrace();

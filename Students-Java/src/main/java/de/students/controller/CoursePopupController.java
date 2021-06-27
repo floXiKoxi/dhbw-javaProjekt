@@ -6,6 +6,7 @@ import de.students.entity.Raum;
 import de.students.main.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -34,16 +36,20 @@ public class CoursePopupController {
 
         if(getKurs().length() >= 1 && getRaum().length() >= 1){
             
-            Raum raumObj = new Raum(getRaum()); 
+            Raum raumObj = new Raum(getRaum());
+
             dbController.insertRaum(raumObj);
-            
             dbController.insertKurs(new Kurs(getKurs(), raumObj));
 
-            Stage stage = (Stage) btn_save.getScene().getWindow();
-            stage.close();
+            nonBtnClick();
 
         }
 
+    }
+    @FXML
+    private void nonBtnClick() {
+        Stage s = (Stage) btn_save.getScene().getWindow();
+        s.close();
     }
 
     public String getKurs(){
