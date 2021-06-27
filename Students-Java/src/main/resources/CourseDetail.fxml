@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.CourseDetailController">
     <children>
         <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -42,12 +43,39 @@
       </Label>
         <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
          <columns>
-            <TableColumn fx:id="c_vorname" prefWidth="150.0" text="Vorname" />
-            <TableColumn fx:id="c_nachname" minWidth="0.0" prefWidth="150.0" text="Nachname" />
-            <TableColumn fx:id="c_matrikel" minWidth="0.0" prefWidth="167.0" text="Matrikelnummer" />
-            <TableColumn fx:id="c_firma" minWidth="0.0" prefWidth="150.0" text="Firma" />
-            <TableColumn fx:id="c_kenntnisse" prefWidth="100.0" text="Java-Kenntnisse" />
-            <TableColumn fx:id="c_edit" prefWidth="32.0" sortable="false" text="Edit" />
+
+            <TableColumn fx:id="c_vorname" prefWidth="150.0" text="Vorname">
+                <cellValueFactory>
+                    <PropertyValueFactory property="vorname" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="c_nachname" minWidth="0.0" prefWidth="150.0" text="Nachname">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nachname" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="c_matrikel" minWidth="0.0" prefWidth="167.0" text="Matrikelnummer">
+                <cellValueFactory>
+                    <PropertyValueFactory property="matrikelnummer" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="c_firma" minWidth="0.0" prefWidth="150.0" text="Firma">
+                <cellValueFactory>
+                    <PropertyValueFactory property="firma" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="c_kenntnisse" prefWidth="100.0" text="Java-Kenntnisse">
+                <cellValueFactory>
+                    <PropertyValueFactory property="javaKentnisse" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="c_edit" prefWidth="32.0" sortable="false" text="Edit">
+            </TableColumn>
          </columns>
         </TableView>
     </children>

@@ -9,8 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16"
-            fx:controller="de.students.controller.CoursePopupController">
+          fx:controller="de.students.controller.CoursePopupController">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="155.0" />
@@ -22,7 +25,6 @@
   </rowConstraints>
    <children>
       <TextField prefWidth="103.0" GridPane.columnIndex="1" fx:id="kurs"/>
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="raum"/>
       <Button fx:id="btn_save" onAction="#saveCourse" mnemonicParsing="false" text="Neuer Kurs speichern" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -33,6 +35,7 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
+
       <Label text="Raum:" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
@@ -41,7 +44,19 @@
             <Insets right="10.0" />
          </padding>
       </Label>
+
    </children>
+
+    <ComboBox fx:id="kursRaumDropDown" id="comboId" promptText="Select" GridPane.rowIndex="1">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Item 1" />
+                <String fx:value="Item 2" />
+                <String fx:value="Item 3" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
    </padding>

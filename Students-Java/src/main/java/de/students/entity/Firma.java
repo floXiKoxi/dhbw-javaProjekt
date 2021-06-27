@@ -43,7 +43,7 @@ public class Firma {
 
     @Override
     public String toString() {
-        return "{ fId: " + fId + ", name: " + name + ", adresse: " + adresse + " }";
+        return name;
     }
 
 }
