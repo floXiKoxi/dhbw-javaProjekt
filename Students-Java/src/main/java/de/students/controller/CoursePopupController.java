@@ -40,11 +40,9 @@ public class CoursePopupController {
 
             dbController.insertRaum(raumObj);
             dbController.insertKurs(new Kurs(getKurs(), raumObj));
-
             nonBtnClick();
-
         }
-
+        
     }
     @FXML
     private void nonBtnClick() {

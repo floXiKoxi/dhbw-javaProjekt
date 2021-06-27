@@ -28,11 +28,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.stage.WindowEvent;
 
-public class UserInterface{
+public class UserInterface {
 
-    @FXML private TableView<Kurs> kursTable;
-    @FXML private Button btn_newKurs;
+    @FXML
+    private TableView<Kurs> kursTable;
+    @FXML
+    private Button btn_newKurs;
+    @FXML
+    private Button btn_delKurs;
 
     private DatabaseController dbController = Main.dbController;
 
@@ -40,84 +45,114 @@ public class UserInterface{
     private void initialize() {
 
         kursTable.setEditable(true);
+        setDeleteButtonUsage(false);
 
         fillTableWithKurs();
         openPopUp();
-        openCourseDetail();
-
+        //openCourseDetail();
+        deleteCourseButton();
     }
 
-    public void fillTableWithKurs(){
+    public void setDeleteButtonUsage(boolean bool) {
+        btn_delKurs.setVisible(bool);
+        btn_delKurs.setDisable(!bool);
+    }
+
+    public void fillTableWithKurs() {
 
         ObservableList<Kurs> kursList = FXCollections.observableArrayList();
 
-        dbController.getKurse().forEach(x->kursList.add(x));
+        dbController.getKurse().forEach(kurs -> kursList.add(kurs));
 
+        kursTable.getItems().clear();
         kursTable.setItems(kursList);
         kursTable.refresh();
 
     }
 
-    public void openPopUp(){
+    /*
+    public void fillTableWithStudent(Kurs kurs) {
+        ObservableList<Student> kursList = FXCollections.observableArrayList();
 
-        btn_newKurs.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
+        dbController.getStudenten().forEach(student -> kursList.add(student));
 
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CoursePopup.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.setAlwaysOnTop(true);
+        kursTable.getItems().clear();
+        kursTable.setItems(kursList);
 
-                    //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                    stage.showAndWait();
+    }
+     */
+    public void deleteKurs(Kurs kurs) {
+        dbController.deleteKurs(kurs);
+        fillTableWithKurs();
+        setDeleteButtonUsage(false);
+    }
 
-                    fillTableWithKurs();
+    public void openPopUp() {
 
+        btn_newKurs.setOnMouseClicked((MouseEvent event) -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CoursePopup.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));
+                stage.setAlwaysOnTop(true);
+                /*
+                stage.setOnCloseRequest((WindowEvent event1) -> {
+                fillTableWithKurs();
+                });
+                 */
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //Wenn Stage geschlossen ist, dann macht weiter mit code.
+                stage.showAndWait();
 
+                fillTableWithKurs();
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
     }
 
-    public void openCourseDetail() {
+    public void deleteCourseButton() {
 
-        kursTable.setRowFactory( tv -> {
+        kursTable.setRowFactory(tv -> {
 
             TableRow<Kurs> row = new TableRow<>();
 
             row.setOnMouseClicked(event -> {
 
-                if (event.getClickCount() >= 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
 
+                    setDeleteButtonUsage(true);
                     Kurs rowData = row.getItem();
+                    System.out.println(event.getClickCount());
 
-                    CourseDetailController.kursName = rowData.getKurs();
+                    btn_delKurs.setOnMouseClicked(event1 -> {
+                        deleteKurs(rowData);
+                    });
 
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CourseDetail.fxml"));
-                        Parent root1 = (Parent) fxmlLoader.load();
-                        Stage stage = new Stage();
-                        stage.setScene(new Scene(root1));
-                        stage.show();
-                        stage.setAlwaysOnTop(true);
+                    row.setOnMouseClicked(event2 -> {
+                        CourseDetailController.kursName = rowData.getKurs();
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CourseDetail.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            stage.setAlwaysOnTop(true);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
 
                 }
             });
-            return row ;
+            return row;
         });
     }
-
 
     public TableView getKursTable() {
         return kursTable;

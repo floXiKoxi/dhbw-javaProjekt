@@ -11,16 +11,17 @@ public class Raum {
     private int rId;
     private String raum;
 
-
     public Raum(String raumNr) {
         this.raum = raumNr;
     }
-    public Raum() { }
 
+    public Raum() {
+    }
 
     public String getRaumNr() {
         return raum;
     }
+
     public void setRaumNr(String raumNr) {
         this.raum = raumNr;
     }
@@ -28,6 +29,7 @@ public class Raum {
     public int getrId() {
         return rId;
     }
+
     public void setrId(int rId) {
         this.rId = rId;
     }
@@ -35,5 +37,17 @@ public class Raum {
     @Override
     public String toString() {
         return raum;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Raum raumObj = (Raum) obj;
+        return this.raum.equals(raumObj.raum);
     }
 }
