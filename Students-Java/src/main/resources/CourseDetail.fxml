@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.CourseDetailController">
     <children>
         <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
@@ -30,12 +30,12 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="Kurs *Kursname*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="590.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
+        <Label fx:id="kursNameLabel" alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="Kurs *Kursname*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="590.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
             <font>
                 <Font name="Imprint MT Shadow" size="54.0" />
             </font>
         </Label>
-      <Label alignment="TOP_LEFT" layoutX="490.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="*RaumNummer*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" wrapText="true">
+      <Label fx:id="kursRaumLabel" alignment="TOP_LEFT" layoutX="490.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="*RaumNummer*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" wrapText="true">
          <font>
             <Font name="Imprint MT Shadow" size="54.0" />
          </font>

@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -42,6 +43,7 @@ public class UserInterface{
 
         fillTableWithKurs();
         openPopUp();
+        openCourseDetail();
 
     }
 
@@ -82,6 +84,38 @@ public class UserInterface{
             }
         });
 
+    }
+
+    public void openCourseDetail() {
+
+        kursTable.setRowFactory( tv -> {
+
+            TableRow<Kurs> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+
+                if (event.getClickCount() >= 2 && (! row.isEmpty()) ) {
+
+                    Kurs rowData = row.getItem();
+
+                    CourseDetailController.kursName = rowData.getKurs();
+
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CourseDetail.fxml"));
+                        Parent root1 = (Parent) fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                        stage.setAlwaysOnTop(true);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            return row ;
+        });
     }
 
 
