@@ -8,10 +8,10 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
     <children>
         <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -42,12 +42,12 @@
             <columns>
                 <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" text="Kurs">
                     <cellValueFactory>
-                        <PropertyValueFactory property="kurs"/>
+                        <PropertyValueFactory property="kurs" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Raum" >
+                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Raum">
                     <cellValueFactory>
-                        <PropertyValueFactory property="raum"/>
+                        <PropertyValueFactory property="raum" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
@@ -60,5 +60,13 @@
                 <Font size="24.0" />
             </font>
         </Button>
+      <Button fx:id="btn_delKurs" layoutX="615.0" layoutY="400.0" mnemonicParsing="false" text="Kurs löschen" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
