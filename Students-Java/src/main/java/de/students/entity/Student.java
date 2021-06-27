@@ -72,6 +72,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "{ matrikelnummer: " + matrikelnummer + ", vorname: " + vorname + ", nachname: " + nachname + ", javaKenntnisse: " + javaKentnisse + ", kurs: " + kurs.toString() + ", firma: " + firma.toString() + " }";
+        return firma.toString();
     }
 }

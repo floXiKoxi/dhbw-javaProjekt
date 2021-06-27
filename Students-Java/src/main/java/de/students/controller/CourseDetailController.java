@@ -38,7 +38,7 @@ public class CourseDetailController {
         ObservableList<Student> studentsList = FXCollections.observableArrayList();
 
         dbController.getStudenten().forEach(x->studentsList.add(x));
-        System.out.println(studentsList.size());
+
         for(Student student : studentsList){
 
             if(student.getKurs().getKurs() == this.kursName){

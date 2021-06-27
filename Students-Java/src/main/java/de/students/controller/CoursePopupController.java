@@ -12,34 +12,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CoursePopupController {
 
     @FXML private Button btn_save;
     @FXML private TextField kurs;
-    @FXML private TextField raum;
+    @FXML private ComboBox kursRaumDropDown;
 
     private DatabaseController dbController = Main.dbController;
 
     @FXML
     private void initialize() {
+        fillComboBox();
     }
 
     @FXML
     public void saveCourse(ActionEvent e){
 
-        if(getKurs().length() >= 1 && getRaum().length() >= 1){
-            
-            Raum raumObj = new Raum(getRaum());
+        Raum raum = (Raum) kursRaumDropDown.getSelectionModel().getSelectedItem();
+        if(getKurs().length() >= 1 && raum != null){
 
-            dbController.insertRaum(raumObj);
-            dbController.insertKurs(new Kurs(getKurs(), raumObj));
+            //dbController.insertRaum(raumObj);
+            dbController.insertKurs(new Kurs(getKurs(), raum));
             nonBtnClick();
         }
         
@@ -50,14 +52,19 @@ public class CoursePopupController {
         s.close();
     }
 
+    public void fillComboBox(){
+
+        List<Raum> raumList = dbController.getRaeume();
+
+        kursRaumDropDown.getItems().clear();
+
+        kursRaumDropDown.getItems().addAll(raumList);
+
+    }
+
     public String getKurs(){
 
         return kurs.getText();
-
-    }
-    public String getRaum(){
-
-        return raum.getText();
 
     }
 
