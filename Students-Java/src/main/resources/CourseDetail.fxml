@@ -40,14 +40,14 @@
             <Font name="Imprint MT Shadow" size="54.0" />
          </font>
       </Label>
-        <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
+        <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
          <columns>
-            <TableColumn prefWidth="150.0" text="Vorname" />
-            <TableColumn minWidth="0.0" prefWidth="150.0" text="Nachname" />
-            <TableColumn minWidth="0.0" prefWidth="167.0" text="Matrikelnummer" />
-            <TableColumn minWidth="0.0" prefWidth="150.0" text="Firma" />
-            <TableColumn prefWidth="100.0" text="Java-Kenntnisse" />
-            <TableColumn prefWidth="32.0" sortable="false" text="Edit" />
+            <TableColumn fx:id="c_vorname" prefWidth="150.0" text="Vorname" />
+            <TableColumn fx:id="c_nachname" minWidth="0.0" prefWidth="150.0" text="Nachname" />
+            <TableColumn fx:id="c_matrikel" minWidth="0.0" prefWidth="167.0" text="Matrikelnummer" />
+            <TableColumn fx:id="c_firma" minWidth="0.0" prefWidth="150.0" text="Firma" />
+            <TableColumn fx:id="c_kenntnisse" prefWidth="100.0" text="Java-Kenntnisse" />
+            <TableColumn fx:id="c_edit" prefWidth="32.0" sortable="false" text="Edit" />
          </columns>
         </TableView>
     </children>

@@ -36,17 +36,17 @@
                 <Insets right="10.0" />
             </GridPane.margin>
         </Label>
-        <TextField GridPane.columnIndex="1">
+        <TextField fx:id="input_vorname" GridPane.columnIndex="1">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <TextField fx:id="input_nachname" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Button mnemonicParsing="false" text="Student einweisen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+        <Button fx:id="btn_save" mnemonicParsing="false" text="Student einweisen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -54,12 +54,12 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <TextField fx:id="input_kurs" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <TextField fx:id="input_matrikel" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
@@ -84,12 +84,12 @@
                 <Insets right="10.0" />
             </GridPane.margin>
         </Label>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <TextField fx:id="input_firma" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Slider majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+        <Slider fx:id="slider_kenntnisse" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
             <cursor>
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
