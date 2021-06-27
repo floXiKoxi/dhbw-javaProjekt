@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="Kurs *Kursname*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="590.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
+            <font>
+                <Font name="Imprint MT Shadow" size="54.0" />
+            </font>
+        </Label>
+      <Label alignment="TOP_LEFT" layoutX="490.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="*RaumNummer*" textFill="#e40101" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Imprint MT Shadow" size="54.0" />
+         </font>
+      </Label>
+        <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
+         <columns>
+            <TableColumn prefWidth="150.0" text="Vorname" />
+            <TableColumn minWidth="0.0" prefWidth="150.0" text="Nachname" />
+            <TableColumn minWidth="0.0" prefWidth="167.0" text="Matrikelnummer" />
+            <TableColumn minWidth="0.0" prefWidth="150.0" text="Firma" />
+            <TableColumn prefWidth="100.0" text="Java-Kenntnisse" />
+            <TableColumn prefWidth="32.0" sortable="false" text="Edit" />
+         </columns>
+        </TableView>
+    </children>
+</AnchorPane>

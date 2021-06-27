@@ -1,5 +1,6 @@
 package de.students.main;
 
+import de.students.db.DatabaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main  extends Application{
+
+    public static DatabaseController dbController = new DatabaseController();
 
     public static void main(String[] args) {
         launch(args);
@@ -22,4 +25,5 @@ public class Main extends Application {
         stage.show();
 
     }
+
 }

@@ -1,5 +1,7 @@
 package de.students.entity;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -42,8 +44,12 @@ public class Kurs {
         this.kId = kId;
     }
 
+    public String getKurs(){
+        return getName();
+    }
+
     @Override
     public String toString() {
-        return "{ kId: " + kId + ", name: " + name + ", raum: " + raum.toString() + " }";
+        return getKurs();
     }
 }
