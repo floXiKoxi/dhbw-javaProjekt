@@ -23,9 +23,12 @@ import java.util.List;
 
 public class CoursePopupController {
 
-    @FXML private Button btn_save;
-    @FXML private TextField kurs;
-    @FXML private ComboBox kursRaumDropDown;
+    @FXML
+    private Button btn_save;
+    @FXML
+    private TextField kurs;
+    @FXML
+    private ComboBox kursRaumDropDown;
 
     private DatabaseController dbController = Main.dbController;
 
@@ -35,24 +38,24 @@ public class CoursePopupController {
     }
 
     @FXML
-    public void saveCourse(ActionEvent e){
+    public void saveCourse(ActionEvent e) {
 
         Raum raum = (Raum) kursRaumDropDown.getSelectionModel().getSelectedItem();
-        if(getKurs().length() >= 1 && raum != null){
+        if (getKurs().length() >= 1 && raum != null) {
 
-            //dbController.insertRaum(raumObj);
             dbController.insertKurs(new Kurs(getKurs(), raum));
             nonBtnClick();
         }
-        
+
     }
+
     @FXML
     private void nonBtnClick() {
         Stage s = (Stage) btn_save.getScene().getWindow();
         s.close();
     }
 
-    public void fillComboBox(){
+    public void fillComboBox() {
 
         List<Raum> raumList = dbController.getRaeume();
 
@@ -62,7 +65,7 @@ public class CoursePopupController {
 
     }
 
-    public String getKurs(){
+    public String getKurs() {
 
         return kurs.getText();
 

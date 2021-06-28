@@ -12,17 +12,18 @@ public class Firma {
     private String name;
     private String adresse;
 
-
     public Firma(String name, String adresse) {
         this.name = name;
         this.adresse = adresse;
     }
-    public Firma() { }
 
+    public Firma() {
+    }
 
     public String getAdresse() {
         return adresse;
     }
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -30,6 +31,7 @@ public class Firma {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -37,6 +39,7 @@ public class Firma {
     public void setfId(int fId) {
         this.fId = fId;
     }
+
     public int getfId() {
         return fId;
     }

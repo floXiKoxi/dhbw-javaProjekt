@@ -33,25 +33,22 @@ public class CourseDetailController {
 
     }
 
-    public void fillTableWithKurs(){
+    public void fillTableWithKurs() {
 
         ObservableList<Student> studentsList = FXCollections.observableArrayList();
 
-        dbController.getStudenten().forEach(x->studentsList.add(x));
+        dbController.getStudenten().forEach(x -> studentsList.add(x));
 
-        for(Student student : studentsList){
+        for (Student student : studentsList) {
 
-            if(student.getKurs().getKurs() == this.kursName){
-
+            if (student.getKurs().getKurs().equals(this.kursName)) {
                 table.setItems(studentsList);
                 table.refresh();
-
             }
-
         }
-
     }
-    public void updateKursDeatils(){
+
+    public void updateKursDeatils() {
 
         Raum raum = dbController.getKursByName(kursName).getRaum();
 

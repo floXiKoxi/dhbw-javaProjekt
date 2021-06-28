@@ -116,7 +116,6 @@ public class DatabaseController {
         session.getTransaction().commit();
     }
 
-
     // Firmen
     public List<Firma> getFirmen() {
         session.beginTransaction();
@@ -145,7 +144,6 @@ public class DatabaseController {
         session.getTransaction().commit();
     }
 
-
     // nur fürs Testen des DatabaseControllers
     public static void main(String[] args) {
 
@@ -153,20 +151,21 @@ public class DatabaseController {
 
         // select
         Kurs kurs = dbController.getKursByName("abc");
-        if (kurs == null) System.out.println("Dieser Kurs ist nicht vorhanden");
-        else System.out.println(kurs);
+        if (kurs == null) {
+            System.out.println("Dieser Kurs ist nicht vorhanden");
+        } else {
+            System.out.println(kurs);
+        }
 
         // update
         /*kurs.setName("abc2");
         dbController.updateKurs(kurs);*/
-
         // insert
         /*Kurs newKurs = new Kurs();
         newKurs.setRaum(kurs.getRaum());
         newKurs.setName("test kurs");
         dbController.insertKurs(newKurs);  // Id von newKurs wird erst hier gesetzt
         System.out.println("newkurs Id: " + newKurs.getkId());*/
-
         // contains
         System.out.println(dbController.kurseContains("abc"));
 

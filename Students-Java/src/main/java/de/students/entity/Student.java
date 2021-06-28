@@ -15,8 +15,7 @@ public class Student {
     @ManyToOne
     private Firma firma;
 
-
-    public Student(String vorname, String nachname, int matrikelnummer, Firma firma, Kurs kurs, int javaKentnisse){
+    public Student(String vorname, String nachname, int matrikelnummer, Firma firma, Kurs kurs, int javaKentnisse) {
         this.matrikelnummer = matrikelnummer;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -24,13 +23,14 @@ public class Student {
         this.kurs = kurs;
         this.firma = firma;
     }
-    
-    public Student() { }
 
+    public Student() {
+    }
 
     public int getMatrikelnummer() {
         return matrikelnummer;
     }
+
     public void setMatrikelnummer(int matrikelnummer) {
         this.matrikelnummer = matrikelnummer;
     }
@@ -38,6 +38,7 @@ public class Student {
     public String getVorname() {
         return vorname;
     }
+
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
@@ -45,6 +46,7 @@ public class Student {
     public String getNachname() {
         return nachname;
     }
+
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
@@ -52,6 +54,7 @@ public class Student {
     public int getJavaKentnisse() {
         return javaKentnisse;
     }
+
     public void setJavaKentnisse(int javaKentnisse) {
         this.javaKentnisse = javaKentnisse;
     }
@@ -59,6 +62,7 @@ public class Student {
     public Kurs getKurs() {
         return kurs;
     }
+
     public void setKurs(Kurs kurs) {
         this.kurs = kurs;
     }
@@ -66,6 +70,7 @@ public class Student {
     public Firma getFirma() {
         return firma;
     }
+
     public void setFirma(Firma firma) {
         this.firma = firma;
     }
