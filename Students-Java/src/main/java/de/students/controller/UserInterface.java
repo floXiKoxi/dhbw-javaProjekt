@@ -48,9 +48,8 @@ public class UserInterface {
         setDeleteButtonUsage(false);
 
         fillTableWithKurs();
-        openPopUp();
-        //openCourseDetail();
-        deleteCourseButton();
+        openKursPopUp();
+        pressTableRow();
     }
 
     public void setDeleteButtonUsage(boolean bool) {
@@ -70,24 +69,13 @@ public class UserInterface {
 
     }
 
-    /*
-    public void fillTableWithStudent(Kurs kurs) {
-        ObservableList<Student> kursList = FXCollections.observableArrayList();
-
-        dbController.getStudenten().forEach(student -> kursList.add(student));
-
-        kursTable.getItems().clear();
-        kursTable.setItems(kursList);
-
-    }
-     */
     public void deleteKurs(Kurs kurs) {
         dbController.deleteKurs(kurs);
         fillTableWithKurs();
         setDeleteButtonUsage(false);
     }
 
-    public void openPopUp() {
+    public void openKursPopUp() {
 
         btn_newKurs.setOnMouseClicked((MouseEvent event) -> {
             try {
@@ -96,11 +84,6 @@ public class UserInterface {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));
                 stage.setAlwaysOnTop(true);
-                /*
-                stage.setOnCloseRequest((WindowEvent event1) -> {
-                fillTableWithKurs();
-                });
-                 */
 
                 //Wenn Stage geschlossen ist, dann macht weiter mit code.
                 stage.showAndWait();
@@ -114,7 +97,7 @@ public class UserInterface {
 
     }
 
-    public void deleteCourseButton() {
+    public void pressTableRow() {
 
         kursTable.setRowFactory(tv -> {
 
@@ -126,13 +109,13 @@ public class UserInterface {
 
                     setDeleteButtonUsage(true);
                     Kurs rowData = row.getItem();
-                    System.out.println(event.getClickCount());
 
                     btn_delKurs.setOnMouseClicked(event1 -> {
                         deleteKurs(rowData);
                     });
 
                     row.setOnMouseClicked(event2 -> {
+
                         CourseDetailController.kursName = rowData.getKurs();
 
                         try {

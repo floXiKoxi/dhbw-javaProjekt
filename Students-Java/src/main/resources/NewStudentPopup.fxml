@@ -46,7 +46,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Button fx:id="btn_save" mnemonicParsing="false" text="Student einweisen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+        <Button fx:id="btn_save" onAction="#saveStudent" mnemonicParsing="false" text="Student einweisen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
