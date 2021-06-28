@@ -72,11 +72,6 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label text="Kurs" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </Label>
       <Label text="Matrikel-Nr." GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <padding>
             <Insets right="10.0" />
