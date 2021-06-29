@@ -6,8 +6,10 @@ import de.students.entity.Kurs;
 import de.students.entity.Raum;
 import de.students.entity.Student;
 import de.students.main.Main;
+import de.students.utils.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -16,15 +18,15 @@ import javafx.stage.Stage;
 public class StudentPopupController {
 
     @FXML
-    private TextField vorname;
+    private TextField input_vorname;
     @FXML
-    private TextField nachname;
+    private TextField input_nachname;
     @FXML
-    private TextField matrikel_nummer;
+    private TextField input_matrikel;
     @FXML
-    private TextField firma;
+    private TextField input_firma;
     @FXML
-    private Slider java_kenntnisse;
+    private Slider slider_kenntnisse;
     @FXML
     private Button btn_delete;
     @FXML
@@ -40,10 +42,24 @@ public class StudentPopupController {
     @FXML
     public void saveStudent(ActionEvent e) {
 
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+
+        String[] kursArray = stage.getTitle().split("-");
+
         if (getVorname().length() >= 1 && getNachname().length() >= 1 && getMatrikel_nummer().length() >= 1 && getFirma().length() >= 1) {
 
-            dbController.insertStudent(new Student(getVorname(), getNachname(), Integer.parseInt(getMatrikel_nummer()), new Firma(getFirma(), ""), new Kurs(), getJava_Kenntnisse()));  // parse könnte Probleme machen. Fehler catchen
-            nonBtnClick();
+            if(Constants.isCorrect(getMatrikel_nummer()) == false){
+
+                Firma firma = new Firma(getFirma(), "bla");
+                Kurs kurs = new Kurs(kursArray[0], new Raum(kursArray[1]));
+                int matrikel = Integer.parseInt(getMatrikel_nummer());
+                Student student = new Student(getVorname(), getNachname(), matrikel, firma,
+                        kurs, getJava_Kenntnisse());
+
+                dbController.insertStudent(student);
+                nonBtnClick();
+
+            }
         }
 
     }
@@ -55,23 +71,23 @@ public class StudentPopupController {
     }
 
     public String getVorname() {
-        return vorname.getText();
+        return input_vorname.getText();
     }
 
     public String getNachname() {
-        return nachname.getText();
+        return input_nachname.getText();
     }
 
     public String getMatrikel_nummer() {
-        return matrikel_nummer.getText();
+        return input_matrikel.getText();
     }
 
     public String getFirma() {
-        return firma.getText();
+        return input_firma.getText();
     }
 
     public int getJava_Kenntnisse() {
-        return (int) java_kenntnisse.getValue();
+        return (int) slider_kenntnisse.getValue();
     }
 
 }
