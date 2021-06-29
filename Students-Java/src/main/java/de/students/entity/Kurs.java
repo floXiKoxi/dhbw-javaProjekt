@@ -1,7 +1,5 @@
 package de.students.entity;
 
-import javafx.beans.property.SimpleStringProperty;
-
 import javax.persistence.*;
 
 @Entity

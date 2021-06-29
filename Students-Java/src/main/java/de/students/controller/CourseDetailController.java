@@ -1,7 +1,6 @@
 package de.students.controller;
 
 import de.students.db.DatabaseController;
-import de.students.entity.Kurs;
 import de.students.entity.Raum;
 import de.students.entity.Student;
 import de.students.main.Main;
