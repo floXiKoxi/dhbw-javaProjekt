@@ -6,10 +6,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.students.controller.UserInterface">
     <children>
         <Label alignment="TOP_LEFT" layoutX="-1.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" text="KURSE" textFill="#e40101" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true" AnchorPane.bottomAnchor="590.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="25.0">
             <font>
@@ -30,29 +32,42 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="btn_newKurs" layoutX="624.0" layoutY="320.0" mnemonicParsing="false" text="Neuer Kurs" AnchorPane.bottomAnchor="320.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="320.0">
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-      <Button fx:id="btn_delKurs" layoutX="616.0" layoutY="471.0" mnemonicParsing="false" text="Kurs löschen" textFill="RED">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="btn_newKurs1" layoutX="624.0" layoutY="400.0" mnemonicParsing="false" text="Kurs bearbeiten">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
+      <TilePane layoutX="342.0" layoutY="27.0" prefHeight="49.0" prefWidth="501.0">
+         <children>
+              <Button fx:id="btn_newKurs" mnemonicParsing="false" prefHeight="51.0" prefWidth="165.0" text="Neuer Kurs">
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <font>
+                      <Font size="24.0" />
+                  </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+              </Button>
+            <Button fx:id="btn_newKurs1" mnemonicParsing="false" prefHeight="51.0" prefWidth="166.0" text="Kurs bearbeiten">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btn_delKurs" mnemonicParsing="false" text="Kurs löschen" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </TilePane>
     </children>
 </AnchorPane>
