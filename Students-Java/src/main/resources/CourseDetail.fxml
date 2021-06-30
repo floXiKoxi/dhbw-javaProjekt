@@ -45,7 +45,7 @@
             <Font name="Imprint MT Shadow" size="54.0" />
          </font>
       </Label>
-        <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
+        <TableView fx:id="studentTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
          <columns>
 
             <TableColumn fx:id="c_vorname" prefWidth="150.0" text="Vorname">

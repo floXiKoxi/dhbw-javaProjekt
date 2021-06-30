@@ -27,6 +27,8 @@ public class UserInterface {
     private Button btn_newKurs;
     @FXML
     private Button btn_delKurs;
+    @FXML
+    private Button btn_editKurs;
 
     private DatabaseController dbController = Main.dbController;
 
@@ -34,16 +36,16 @@ public class UserInterface {
     private void initialize() {
 
         kursTable.setEditable(true);
-        setDeleteButtonUsage(false);
-
+        setButtonUsage(btn_delKurs, false);
+        setButtonUsage(btn_editKurs, false);
         fillTableWithKurs();
         openKursPopUp();
         pressTableRow();
     }
 
-    public void setDeleteButtonUsage(boolean bool) {
-        btn_delKurs.setVisible(bool);
-        btn_delKurs.setDisable(!bool);
+    public void setButtonUsage(Button button, boolean bool) {
+        button.setVisible(bool);
+        button.setDisable(!bool);
     }
 
     public void fillTableWithKurs() {
@@ -61,7 +63,7 @@ public class UserInterface {
     public void deleteKurs(Kurs kurs) {
         dbController.deleteKurs(kurs);
         fillTableWithKurs();
-        setDeleteButtonUsage(false);
+        setButtonUsage(btn_delKurs, false);
     }
 
     public void openKursPopUp() {
@@ -96,14 +98,35 @@ public class UserInterface {
 
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
 
-                    setDeleteButtonUsage(true);
+                    setButtonUsage(btn_delKurs, true);
+                    setButtonUsage(btn_editKurs, true);
                     Kurs rowData = row.getItem();
 
                     btn_delKurs.setOnMouseClicked(event1 -> {
                         deleteKurs(rowData);
                     });
 
-                    row.setOnMouseClicked(event2 -> {
+                    btn_editKurs.setOnMouseClicked(event2 -> {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CoursePopup.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            CoursePopupController controller = fxmlLoader.getController();
+                            controller.initData(rowData);
+                            stage.setAlwaysOnTop(true);
+
+                            //Wenn Stage geschlossen ist, dann macht weiter mit code.
+                            stage.showAndWait();
+                            fillTableWithKurs();
+                            setButtonUsage(btn_delKurs, false);
+                            setButtonUsage(btn_editKurs, false);
+
+                        } catch (IOException e) {
+                        }
+                    });
+
+                    row.setOnMouseClicked(event3 -> {
 
                         CourseDetailController.kursName = rowData.getKurs();
 

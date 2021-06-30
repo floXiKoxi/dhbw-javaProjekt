@@ -33,7 +33,7 @@ public class CourseDetailController {
     private String kursPopupName;
 
     @FXML
-    private TableView<Student> table;
+    private TableView<Student> studentTable;
     @FXML
     private Label kursNameLabel;
     @FXML
@@ -46,12 +46,18 @@ public class CourseDetailController {
     @FXML
     private void initialize() {
 
-        table.setEditable(true);
+        studentTable.setEditable(true);
         fillTableWithStudent();
         updateKursDeatils();
         openStudentPopup();
-        //openEditStudentPopup();
+        setButtonUsage(editStudent, false);
+        openEditStudentPopup();
 
+    }
+
+    public void setButtonUsage(Button button, boolean bool) {
+        button.setVisible(bool);
+        button.setDisable(!bool);
     }
 
     public void fillTableWithStudent() {
@@ -67,8 +73,8 @@ public class CourseDetailController {
                 currentStudents.add(student);
             }
         }
-        table.setItems(currentStudents);
-        table.refresh();
+        studentTable.setItems(currentStudents);
+        studentTable.refresh();
     }
 
     public void updateKursDeatils() {
@@ -84,7 +90,7 @@ public class CourseDetailController {
 
         addStudent.setOnMouseClicked((MouseEvent event) -> {
             try {
-                Stage s = (Stage)((Node) event.getSource()).getScene().getWindow();
+                Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("StudentPopup.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
@@ -101,31 +107,42 @@ public class CourseDetailController {
             }
         });
     }
-    
+
     public void openEditStudentPopup() {
 
-        editStudent.setOnMouseClicked((MouseEvent event) -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("StudentPopup.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setAlwaysOnTop(true);
+        studentTable.setRowFactory(tv -> {
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                setButtonUsage(editStudent, true);
+                Student rowData = row.getItem();
+                System.out.print("asdf");
+                editStudent.setOnMouseClicked((MouseEvent event1) -> {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("StudentPopup.fxml"));
+                        Parent root1 = (Parent) fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root1));
+                        StudentPopupController controller = fxmlLoader.getController();
+                        controller.initData(rowData);
+                        stage.setAlwaysOnTop(true);
 
-                //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                stage.showAndWait();
+                        //Wenn Stage geschlossen ist, dann macht weiter mit code.
+                        stage.showAndWait();
+                        fillTableWithStudent();
+                        setButtonUsage(editStudent, false);
 
-                fillTableWithStudent();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            });
+            return row;
         });
     }
 
     public void pressTableRow() {
 
-        table.setRowFactory(tv -> {
+        studentTable.setRowFactory(tv -> {
 
             TableRow<Kurs> row = new TableRow<>();
 

@@ -45,7 +45,7 @@
                   <DropShadow />
                </effect>
               </Button>
-            <Button fx:id="btn_newKurs1" mnemonicParsing="false" prefHeight="51.0" prefWidth="166.0" text="Kurs bearbeiten">
+            <Button fx:id="btn_editKurs" mnemonicParsing="false" prefHeight="51.0" prefWidth="166.0" text="Kurs bearbeiten">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

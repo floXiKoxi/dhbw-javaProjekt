@@ -18,27 +18,43 @@ public class CoursePopupController {
     @FXML
     private Button btn_save;
     @FXML
+    private Button btn_edit;
+    @FXML
     private TextField kurs;
     @FXML
     private ComboBox kursRaumDropDown;
+
+    private Kurs selectedKurs;
 
     private DatabaseController dbController = Main.dbController;
 
     @FXML
     private void initialize() {
+        setButtonUsage(btn_save, true);
+        setButtonUsage(btn_edit, false);
         fillComboBox();
+    }
+
+    public void setButtonUsage(Button button, boolean bool) {
+        button.setVisible(bool);
+        button.setDisable(!bool);
     }
 
     @FXML
     public void saveCourse(ActionEvent e) {
+        if (getKurs().length() >= 1 && getRaum() != null) {
 
-        Raum raum = (Raum) kursRaumDropDown.getSelectionModel().getSelectedItem();
-        if (getKurs().length() >= 1 && raum != null) {
-
-            dbController.insertKurs(new Kurs(getKurs(), raum));
+            dbController.insertKurs(new Kurs(getKurs(), getRaum()));
             nonBtnClick();
         }
+    }
 
+    @FXML
+    public void editCourse(ActionEvent e) {
+        selectedKurs.setName(getKurs());
+        selectedKurs.setRaum(getRaum());
+        dbController.updateKurs(selectedKurs);
+        nonBtnClick();
     }
 
     @FXML
@@ -50,17 +66,24 @@ public class CoursePopupController {
     public void fillComboBox() {
 
         List<Raum> raumList = dbController.getRaeume();
-
         kursRaumDropDown.getItems().clear();
-
         kursRaumDropDown.getItems().addAll(raumList);
 
     }
 
     public String getKurs() {
-
         return kurs.getText();
-
     }
 
+    public Raum getRaum() {
+        return (Raum) kursRaumDropDown.getSelectionModel().getSelectedItem();
+    }
+
+    public void initData(Kurs kurs) {
+        this.kurs.setText(kurs.getName());
+        setButtonUsage(btn_save, false);
+        setButtonUsage(btn_edit, true);
+        selectedKurs = kurs;
+
+    }
 }

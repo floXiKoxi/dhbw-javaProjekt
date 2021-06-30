@@ -31,25 +31,33 @@ public class StudentPopupController {
     private Button btn_delete;
     @FXML
     private Button btn_save;
+    @FXML
+    private Button btn_edit;
+
+    Student selectedStudent;
 
     private DatabaseController dbController = Main.dbController;
 
     @FXML
     private void initialize() {
+    }
 
+    public void setButtonUsage(Button button, boolean bool) {
+        button.setVisible(bool);
+        button.setDisable(!bool);
     }
 
     @FXML
     public void saveStudent(ActionEvent e) {
 
-        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         String[] kursArray = stage.getTitle().split("-");
 
         if (getVorname().length() >= 1 && getNachname().length() >= 1 && getMatrikel_nummer().length() >= 1
-                && getMatrikel_nummer().length() <8 && getFirma().length() >= 1) {
+                && getMatrikel_nummer().length() < 8 && getFirma().length() >= 1) {
 
-            if(Constants.isCorrect(getMatrikel_nummer()) == false){
+            if (Constants.isCorrect(getMatrikel_nummer()) == false) {
 
                 Firma firma = new Firma(getFirma(), "bla");
                 Kurs kurs = getKurs(kursArray[0], kursArray[1]);
@@ -60,21 +68,38 @@ public class StudentPopupController {
 
                 dbController.insertFirma(firma);
 
-                if(kurs != null) dbController.insertKurs(kurs);
+                if (kurs != null) {
+                    dbController.insertKurs(kurs);
+                }
 
                 dbController.insertStudent(student);
                 nonBtnClick();
 
             }
         }
-
     }
 
-    public Raum getRaum(String raumNummer){
+    @FXML
+    public void editStudent(ActionEvent e) {
+        selectedStudent.setVorname(getVorname());
+        selectedStudent.setNachname(getNachname());
+        selectedStudent.setMatrikelnummer(Integer.parseInt(getMatrikel_nummer()));
+        selectedStudent.setJavaKentnisse(getJava_Kenntnisse());
+        dbController.updateStudent(selectedStudent);
+        nonBtnClick();
+    }
 
-        for(Raum raum : dbController.getRaeume()){
+    @FXML
+    public void deleteStudent(ActionEvent e) {
+        dbController.deleteStudent(selectedStudent);
+        nonBtnClick();
+    }
 
-            if(raum.getRaumNr() == raumNummer){
+    public Raum getRaum(String raumNummer) {
+
+        for (Raum raum : dbController.getRaeume()) {
+
+            if (raum.getRaumNr() == raumNummer) {
                 return raum;
             }
 
@@ -82,13 +107,13 @@ public class StudentPopupController {
         return null;
     }
 
-    public Kurs getKurs(String kursname, String raum){
+    public Kurs getKurs(String kursname, String raum) {
 
-        for(Kurs kurs : dbController.getKurse()){
+        for (Kurs kurs : dbController.getKurse()) {
 
-            System.out.println("Searching for: "+kursname + " Result: "+kurs.getKurs());
+            System.out.println("Searching for: " + kursname + " Result: " + kurs.getKurs());
 
-            if(kurs.getKurs().equals(kursname)){
+            if (kurs.getKurs().equals(kursname)) {
                 return kurs;
             }
 
@@ -122,4 +147,15 @@ public class StudentPopupController {
         return (int) slider_kenntnisse.getValue();
     }
 
+    public void initData(Student student) {
+        this.input_vorname.setText(student.getVorname());
+        this.input_nachname.setText(student.getNachname());
+        this.input_matrikel.setText(student.getMatrikelnummer() + "");
+        this.input_firma.setText(student.getFirma().getName());
+        this.slider_kenntnisse.setValue(student.getJavaKentnisse());
+        this.selectedStudent = student;
+        setButtonUsage(btn_delete, true);
+        setButtonUsage(btn_edit, true);
+        setButtonUsage(btn_save, false);
+    }
 }
