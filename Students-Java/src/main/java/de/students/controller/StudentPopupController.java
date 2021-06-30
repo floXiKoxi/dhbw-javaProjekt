@@ -46,15 +46,21 @@ public class StudentPopupController {
 
         String[] kursArray = stage.getTitle().split("-");
 
-        if (getVorname().length() >= 1 && getNachname().length() >= 1 && getMatrikel_nummer().length() >= 1 && getFirma().length() >= 1) {
+        if (getVorname().length() >= 1 && getNachname().length() >= 1 && getMatrikel_nummer().length() >= 1
+                && getMatrikel_nummer().length() <8 && getFirma().length() >= 1) {
 
             if(Constants.isCorrect(getMatrikel_nummer()) == false){
 
                 Firma firma = new Firma(getFirma(), "bla");
-                Kurs kurs = new Kurs(kursArray[0], new Raum(kursArray[1]));
+                Kurs kurs = getKurs(kursArray[0], kursArray[1]);
                 int matrikel = Integer.parseInt(getMatrikel_nummer());
+
                 Student student = new Student(getVorname(), getNachname(), matrikel, firma,
                         kurs, getJava_Kenntnisse());
+
+                dbController.insertFirma(firma);
+
+                if(kurs != null) dbController.insertKurs(kurs);
 
                 dbController.insertStudent(student);
                 nonBtnClick();
@@ -62,6 +68,32 @@ public class StudentPopupController {
             }
         }
 
+    }
+
+    public Raum getRaum(String raumNummer){
+
+        for(Raum raum : dbController.getRaeume()){
+
+            if(raum.getRaumNr() == raumNummer){
+                return raum;
+            }
+
+        }
+        return null;
+    }
+
+    public Kurs getKurs(String kursname, String raum){
+
+        for(Kurs kurs : dbController.getKurse()){
+
+            System.out.println("Searching for: "+kursname + " Result: "+kurs.getKurs());
+
+            if(kurs.getKurs().equals(kursname)){
+                return kurs;
+            }
+
+        }
+        return null;
     }
 
     @FXML

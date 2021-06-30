@@ -109,10 +109,11 @@ public class UserInterface {
 
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CourseDetail.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
+                            Parent root = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
+                            stage.setScene(new Scene(root));
                             stage.show();
+                            CourseDetailController.stage = stage;
                             stage.setTitle(rowData.getKurs() + "-" + rowData.getRaum());
                             stage.setAlwaysOnTop(true);
 

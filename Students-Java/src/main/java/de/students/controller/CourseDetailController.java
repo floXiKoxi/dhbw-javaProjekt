@@ -6,6 +6,8 @@ import de.students.entity.Raum;
 import de.students.entity.Student;
 import de.students.main.Main;
 import java.io.IOException;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,12 +20,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class CourseDetailController {
 
     private DatabaseController dbController = Main.dbController;
     public static String kursName;
+    public static Stage stage;
+    private Stage currentStage;
     private String kursPopupName;
 
     @FXML
@@ -41,27 +47,28 @@ public class CourseDetailController {
     private void initialize() {
 
         table.setEditable(true);
-
         fillTableWithStudent();
         updateKursDeatils();
         openStudentPopup();
-        openEditStudentPopup();
+        //openEditStudentPopup();
 
     }
 
     public void fillTableWithStudent() {
 
         ObservableList<Student> studentsList = FXCollections.observableArrayList();
+        ObservableList<Student> currentStudents = FXCollections.observableArrayList();
 
         dbController.getStudenten().forEach(x -> studentsList.add(x));
 
         for (Student student : studentsList) {
 
-            if (student.getKurs().getKurs().equals(this.kursName)) {
-                table.setItems(studentsList);
-                table.refresh();
+            if (student.getKurs().getKurs().equals(kursName)) {
+                currentStudents.add(student);
             }
         }
+        table.setItems(currentStudents);
+        table.refresh();
     }
 
     public void updateKursDeatils() {
