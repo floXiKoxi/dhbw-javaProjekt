@@ -87,8 +87,8 @@ public class StageLoader {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(getParent()));
-        stage.show();
         stage.setTitle(title);
+        stage.showAndWait();
         stage.setAlwaysOnTop(true);
 
         setStage(stage);
