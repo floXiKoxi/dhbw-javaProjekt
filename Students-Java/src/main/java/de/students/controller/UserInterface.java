@@ -30,7 +30,7 @@ public class UserInterface {
     @FXML
     private Button btn_editKurs;
 
-    private DatabaseController dbController = Main.dbController;
+    private final DatabaseController dbController = Main.dbController;
 
     @FXML
     private void initialize() {
