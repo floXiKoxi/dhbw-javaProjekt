@@ -7,6 +7,7 @@ import de.students.entity.Student;
 import de.students.main.Main;
 import java.io.IOException;
 
+import de.students.utils.StageLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -86,22 +87,12 @@ public class CourseDetailController {
     public void openStudentPopup() {
 
         addStudent.setOnMouseClicked((MouseEvent event) -> {
-            try {
-                Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("StudentPopup.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setTitle(s.getTitle());
-                stage.setAlwaysOnTop(true);
 
-                //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                stage.showAndWait();
-                fillTableWithStudent();
+            Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            StageLoader loader = new StageLoader("StudentPopup.fxml");
+            loader.openStage(s.getTitle());
+            fillTableWithStudent();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         });
     }
 
@@ -114,23 +105,11 @@ public class CourseDetailController {
                     setButtonUsage(editStudent, true);
                     Student rowData = row.getItem();
                     editStudent.setOnMouseClicked((MouseEvent event1) -> {
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("StudentPopup.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            StudentPopupController controller = fxmlLoader.getController();
-                            controller.initData(rowData);
-                            stage.setAlwaysOnTop(true);
 
-                            //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                            stage.showAndWait();
-                            fillTableWithStudent();
-                            setButtonUsage(editStudent, false);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        StageLoader loader = new StageLoader("StudentPopup.fxml");
+                        loader.openStageEditStudent(rowData);
+                        fillTableWithStudent();
+                        setButtonUsage(editStudent, false);
                     });
                 }
             });

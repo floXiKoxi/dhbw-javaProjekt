@@ -40,6 +40,7 @@ public class StudentPopupController {
 
     @FXML
     private void initialize() {
+        setButtonUsages(false);
     }
 
     public void setButtonUsage(Button button, boolean bool) {
@@ -50,19 +51,19 @@ public class StudentPopupController {
     @FXML
     public void saveStudent(ActionEvent e) {
 
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        //Stage getten und aus der Stage den Titel getten um Kurs zu indentifizieren
 
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         String[] kursArray = stage.getTitle().split("-");
 
-        if (getVorname().length() >= 1 && getNachname().length() >= 1 && getMatrikel_nummer().length() >= 1
-                && getMatrikel_nummer().length() < 8 && getFirma().length() >= 1) {
+        if (Constants.isCorrectName(getVorname()) && Constants.isCorrectName(getNachname())
+                && Constants.isCorrectName(getFirma())) {
 
-            if (Constants.isCorrect(getMatrikel_nummer()) == false) {
+            if (Constants.isCorrect(getMatrikel_nummer()) == true) {
 
+                int matrikel = Integer.parseInt(getMatrikel_nummer());
                 Firma firma = new Firma(getFirma(), "bla");
                 Kurs kurs = getKurs(kursArray[0], kursArray[1]);
-                int matrikel = Integer.parseInt(getMatrikel_nummer());
-
                 Student student = new Student(getVorname(), getNachname(), matrikel, firma,
                         kurs, getJava_Kenntnisse());
 
@@ -76,6 +77,7 @@ public class StudentPopupController {
                 nonBtnClick();
 
             }
+
         }
     }
 
@@ -110,8 +112,6 @@ public class StudentPopupController {
     public Kurs getKurs(String kursname, String raum) {
 
         for (Kurs kurs : dbController.getKurse()) {
-
-            System.out.println("Searching for: " + kursname + " Result: " + kurs.getKurs());
 
             if (kurs.getKurs().equals(kursname)) {
                 return kurs;
@@ -154,8 +154,22 @@ public class StudentPopupController {
         this.input_firma.setText(student.getFirma().getName());
         this.slider_kenntnisse.setValue(student.getJavaKentnisse());
         this.selectedStudent = student;
-        setButtonUsage(btn_delete, true);
-        setButtonUsage(btn_edit, true);
-        setButtonUsage(btn_save, false);
+        setButtonUsages(true);
+    }
+
+    public void setButtonUsages(boolean set){
+
+        if(set == true){
+
+            setButtonUsage(btn_delete, true);
+            setButtonUsage(btn_edit, true);
+            setButtonUsage(btn_save, false);
+
+        }else{
+            setButtonUsage(btn_delete, false);
+            setButtonUsage(btn_edit, false);
+            setButtonUsage(btn_save, true);
+        }
+
     }
 }

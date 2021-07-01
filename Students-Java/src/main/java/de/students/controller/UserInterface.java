@@ -3,19 +3,14 @@ package de.students.controller;
 import de.students.db.DatabaseController;
 import de.students.entity.Kurs;
 import de.students.main.Main;
+import de.students.utils.StageLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class UserInterface {
 
@@ -73,21 +68,10 @@ public class UserInterface {
     public void openKursPopUp() {
 
         btn_newKurs.setOnMouseClicked((MouseEvent event) -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CoursePopup.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setAlwaysOnTop(true);
 
-                //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                stage.showAndWait();
-
-                fillTableWithKurs();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            StageLoader loader = new StageLoader("CoursePopup.fxml");
+            loader.openStage();
+            fillTableWithKurs();
         });
 
     }
@@ -102,7 +86,7 @@ public class UserInterface {
 
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
 
-                    setButtonUsages(true);
+                    setButtonsUsage(true);
                     Kurs rowData = row.getItem();
 
                     btn_delKurs.setOnMouseClicked(event1 -> {
@@ -110,41 +94,21 @@ public class UserInterface {
                     });
 
                     btn_editKurs.setOnMouseClicked(event2 -> {
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CoursePopup.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            CoursePopupController controller = fxmlLoader.getController();
-                            controller.initData(rowData);
-                            stage.setAlwaysOnTop(true);
+                        StageLoader loader = new StageLoader("CoursePopup.fxml");
+                        loader.openStageEdit(rowData);
+                        fillTableWithKurs();
+                        setButtonsUsage(false);
 
-                            //Wenn Stage geschlossen ist, dann macht weiter mit code.
-                            stage.showAndWait();
-                            fillTableWithKurs();
-                            setButtonUsages(false);
-
-                        } catch (IOException e) {
-                        }
                     });
 
                     row.setOnMouseClicked(event3 -> {
 
                         CourseDetailController.kursName = rowData.getKurs();
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("CourseDetail.fxml"));
-                            Parent root = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root));
-                            stage.show();
-                            CourseDetailController.stage = stage;
-                            stage.setTitle(rowData.getKurs() + "-" + rowData.getRaum());
-                            stage.setAlwaysOnTop(true);
+                        StageLoader loader = new StageLoader("CourseDetail.fxml");
+                        loader.openStage(rowData.getKurs() + "-" + rowData.getRaum());
+                        CourseDetailController.stage = loader.getStage();
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     });
 
                 }
@@ -164,4 +128,12 @@ public class UserInterface {
     public TableView getKursTable() {
         return kursTable;
     }
+
+    public void setButtonsUsage(boolean use){
+
+        setButtonUsage(btn_delKurs, use);
+        setButtonUsage(btn_editKurs, use);
+
+    }
+
 }
