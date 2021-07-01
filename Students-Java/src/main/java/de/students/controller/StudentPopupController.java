@@ -43,7 +43,7 @@ public class StudentPopupController {
 
     @FXML
     private void initialize() {
-
+        label_error.setText("");
         setButtonUsages(false);
     }
 
@@ -84,7 +84,7 @@ public class StudentPopupController {
             }
 
         } else {
-            label_error.setText("Nicht unterstütztes Zeichen oder leeres Feld!");
+            label_error.setText("Bitte alles ausfüllen!");
         }
     }
 

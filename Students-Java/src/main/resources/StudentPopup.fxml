@@ -99,7 +99,7 @@
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
         </Button>
-      <Label prefHeight="31.0" prefWidth="258.0" text="Falsche Matrikel-Nr." textFill="RED" GridPane.rowIndex="5" />
+      <Label fx:id="label_error" prefHeight="31.0" prefWidth="258.0" text="Falsche Matrikel-Nr." textFill="RED" GridPane.rowIndex="5" />
     </children>
     <padding>
         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

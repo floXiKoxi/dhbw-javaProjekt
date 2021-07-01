@@ -34,6 +34,7 @@ public class CoursePopupController {
     
     @FXML
     private void initialize() {
+        label_error.setText("");
         setButtonUsages(true);
         fillComboBox();
     }
@@ -55,7 +56,7 @@ public class CoursePopupController {
             dbController.insertKurs(new Kurs(getKurs(), getRaum()));
             nonBtnClick();
         } else {
-            label_error.setText("Nicht unterstütztes Zeichen oder leeres Feld!");
+            label_error.setText("Bitte alles ausfüllen!");
         }
     }
     

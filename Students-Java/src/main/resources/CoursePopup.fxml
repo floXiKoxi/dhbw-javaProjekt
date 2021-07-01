@@ -59,7 +59,7 @@
               </FXCollections>
           </items>
       </ComboBox>
-      <Label prefHeight="31.0" prefWidth="258.0" text="Ein Fehler ist passiert" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="label_error" prefHeight="31.0" prefWidth="258.0" text="Ein Fehler ist passiert" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     </children>
    <padding>
