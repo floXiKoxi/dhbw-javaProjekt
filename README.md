@@ -1,11 +1,7 @@
 # dhbw-javaProjekt
 Ein super geiles Java Programm für die JAVA-Vorlesung. Es ist toll
 
-# things to do
-- Student hinzufügen button
-- Tab bar bearbeiten
-	- Help -> About schreiben
-	- File?
-	- Edit einrichten?
-- Raum hinzufügen?
+Jar Datei unter Releases runterladen und öffnen.
 
+Java 16
+(Florian Wilk, Yiwen Tu, Alexandre Goebbels, Valentin Neumann, Juri Bykov, Pascal Berski TINF20AI2)
