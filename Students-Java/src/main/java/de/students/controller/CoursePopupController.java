@@ -51,12 +51,17 @@ public class CoursePopupController {
     
     @FXML
     public void saveCourse(ActionEvent e) {
-        if (Constants.isCorrectKursName(getKurs()) && getRaum() != null) {
-            
-            dbController.insertKurs(new Kurs(getKurs(), getRaum()));
-            nonBtnClick();
+        if (Constants.isCorrectKursName(getKurs()) && getRaum() != null ) {
+
+            if(!kurxExists(dbController.getKursByName(getKurs()))){
+                dbController.insertKurs(new Kurs(getKurs(), getRaum()));
+                nonBtnClick();
+            }else {
+                label_error.setText("Kurs existiert bereits");
+            }
+
         } else {
-            label_error.setText("Bitte alles ausfüllen!");
+            label_error.setText("Überpfüfe die Eigabe!");
         }
     }
     
@@ -76,6 +81,17 @@ public class CoursePopupController {
     private void nonBtnClick() {
         Stage s = (Stage) btn_save.getScene().getWindow();
         s.close();
+    }
+
+    public boolean kurxExists(Kurs kurs){
+
+        for(Kurs kursList : dbController.getKurse()){
+
+            if (kursList.equals(kurs)){
+                return true;
+            }
+        }
+        return false;
     }
     
     public void fillComboBox() {
