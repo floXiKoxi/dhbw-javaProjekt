@@ -24,5 +24,13 @@ public class Constants {
         return false;
 
     }
+    
+    public static boolean isCorrectKursName(String name){
+
+        if(name.matches("^[a-zA-Z0-9]+$") && name.length() > 0) return true;
+
+        return false;
+
+    }
 
 }

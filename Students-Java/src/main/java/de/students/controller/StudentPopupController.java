@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -33,6 +34,8 @@ public class StudentPopupController {
     private Button btn_save;
     @FXML
     private Button btn_edit;
+    @FXML
+    private Label label_error;
 
     Student selectedStudent;
 
@@ -40,6 +43,7 @@ public class StudentPopupController {
 
     @FXML
     private void initialize() {
+        label_error.setText("");
         setButtonUsages(false);
     }
 
@@ -52,7 +56,6 @@ public class StudentPopupController {
     public void saveStudent(ActionEvent e) {
 
         //Stage getten und aus der Stage den Titel getten um Kurs zu indentifizieren
-
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         String[] kursArray = stage.getTitle().split("-");
 
@@ -76,8 +79,12 @@ public class StudentPopupController {
                 dbController.insertStudent(student);
                 nonBtnClick();
 
+            } else {
+                label_error.setText("Invalide Matrikel-Nr.!");
             }
 
+        } else {
+            label_error.setText("Nicht unterstütztes Zeichen oder leeres Feld!");
         }
     }
 
@@ -157,15 +164,15 @@ public class StudentPopupController {
         setButtonUsages(true);
     }
 
-    public void setButtonUsages(boolean set){
+    public void setButtonUsages(boolean set) {
 
-        if(set == true){
+        if (set == true) {
 
             setButtonUsage(btn_delete, true);
             setButtonUsage(btn_edit, true);
             setButtonUsage(btn_save, false);
 
-        }else{
+        } else {
             setButtonUsage(btn_delete, false);
             setButtonUsage(btn_edit, false);
             setButtonUsage(btn_save, true);
