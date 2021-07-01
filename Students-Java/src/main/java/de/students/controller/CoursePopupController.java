@@ -30,14 +30,18 @@ public class CoursePopupController {
 
     @FXML
     private void initialize() {
-        setButtonUsage(btn_save, true);
-        setButtonUsage(btn_edit, false);
+        setButtonUsages(true);
         fillComboBox();
     }
 
     public void setButtonUsage(Button button, boolean bool) {
         button.setVisible(bool);
         button.setDisable(!bool);
+    }
+
+    public void setButtonUsages(boolean bool) {     // sets buttons to edit-Mode if true
+        setButtonUsage(btn_save, bool);
+        setButtonUsage(btn_edit, !bool);
     }
 
     @FXML
@@ -81,8 +85,7 @@ public class CoursePopupController {
 
     public void initData(Kurs kurs) {
         this.kurs.setText(kurs.getName());
-        setButtonUsage(btn_save, false);
-        setButtonUsage(btn_edit, true);
+        setButtonUsages(false);
         selectedKurs = kurs;
 
     }

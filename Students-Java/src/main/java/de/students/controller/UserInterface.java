@@ -36,8 +36,7 @@ public class UserInterface {
     private void initialize() {
 
         kursTable.setEditable(true);
-        setButtonUsage(btn_delKurs, false);
-        setButtonUsage(btn_editKurs, false);
+        setButtonUsages(false);
         fillTableWithKurs();
         openKursPopUp();
         pressTableRow();
@@ -46,6 +45,11 @@ public class UserInterface {
     public void setButtonUsage(Button button, boolean bool) {
         button.setVisible(bool);
         button.setDisable(!bool);
+    }
+
+    public void setButtonUsages(boolean bool) {      // set Button usages to editable and deletable if true
+        setButtonUsage(btn_delKurs, bool);
+        setButtonUsage(btn_editKurs, bool);
     }
 
     public void fillTableWithKurs() {
@@ -63,7 +67,7 @@ public class UserInterface {
     public void deleteKurs(Kurs kurs) {
         dbController.deleteKurs(kurs);
         fillTableWithKurs();
-        setButtonUsage(btn_delKurs, false);
+        setButtonUsages(false);
     }
 
     public void openKursPopUp() {
@@ -98,8 +102,7 @@ public class UserInterface {
 
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
 
-                    setButtonUsage(btn_delKurs, true);
-                    setButtonUsage(btn_editKurs, true);
+                    setButtonUsages(true);
                     Kurs rowData = row.getItem();
 
                     btn_delKurs.setOnMouseClicked(event1 -> {
@@ -119,8 +122,7 @@ public class UserInterface {
                             //Wenn Stage geschlossen ist, dann macht weiter mit code.
                             stage.showAndWait();
                             fillTableWithKurs();
-                            setButtonUsage(btn_delKurs, false);
-                            setButtonUsage(btn_editKurs, false);
+                            setButtonUsages(false);
 
                         } catch (IOException e) {
                         }
