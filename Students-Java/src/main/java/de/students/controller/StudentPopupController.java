@@ -43,7 +43,7 @@ public class StudentPopupController {
 
     @FXML
     private void initialize() {
-        label_error.setText("");
+
         setButtonUsages(false);
     }
 
