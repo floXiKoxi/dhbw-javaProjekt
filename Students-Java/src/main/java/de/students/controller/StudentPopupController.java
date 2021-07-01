@@ -60,24 +60,32 @@ public class StudentPopupController {
         String[] kursArray = stage.getTitle().split("-");
 
         if (Constants.isCorrectName(getVorname()) && Constants.isCorrectName(getNachname())
-                && Constants.isCorrectName(getFirma())) {
+                && Constants.isCorrectFirma(getFirma())) {
 
             if (Constants.isCorrect(getMatrikel_nummer()) == true) {
 
-                int matrikel = Integer.parseInt(getMatrikel_nummer());
-                Firma firma = new Firma(getFirma(), "bla");
-                Kurs kurs = getKurs(kursArray[0], kursArray[1]);
-                Student student = new Student(getVorname(), getNachname(), matrikel, firma,
-                        kurs, getJava_Kenntnisse());
+                if(matrikelExits(getMatrikel_nummer()) == false){
 
-                dbController.insertFirma(firma);
+                    int matrikel = Integer.parseInt(getMatrikel_nummer());
+                    Firma firma = new Firma(getFirma(), "bla");
+                    Kurs kurs = getKurs(kursArray[0], kursArray[1]);
+                    Student student = new Student(getVorname(), getNachname(), matrikel, firma,
+                            kurs, getJava_Kenntnisse());
 
-                if (kurs != null) {
-                    dbController.insertKurs(kurs);
+                    dbController.insertFirma(firma);
+
+                    if (kurs != null) {
+                        dbController.insertKurs(kurs);
+                    }
+
+                    dbController.insertStudent(student);
+                    nonBtnClick();
+
+                }else {
+
+                    label_error.setText("Matrikel-Nr. existiert");
+
                 }
-
-                dbController.insertStudent(student);
-                nonBtnClick();
 
             } else {
                 label_error.setText("Invalide Matrikel-Nr.!");
@@ -127,6 +135,19 @@ public class StudentPopupController {
         }
         return null;
     }
+
+    public boolean matrikelExits(String matrikel){
+
+        for(Student student : dbController.getStudenten()){
+
+            if(student.getMatrikelnummer() == Integer.valueOf(matrikel)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
     @FXML
     private void nonBtnClick() {
